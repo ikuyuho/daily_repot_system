@@ -5,12 +5,12 @@ import java.util.List;
 
 import javax.persistence.NoResultException;
 
+import actions.views.EmployeeConverter;
+import actions.views.EmployeeView;
 import constants.JpaConst;
 import models.Employee;
 import models.EmployeeValidator;
 import utils.EncryptUtil;
-import views.EmployeeConverter;
-import views.EmployeeView;
 
 /**
  * 従業員テーブルの操作に関わる処理を行うクラス
@@ -22,6 +22,7 @@ public class EmployeeService extends ServiceBase {
      * @param page ページ数
      * @return 表示するデータのリスト
      * 「指定されたページ数の一覧画面に表示するデータを取得する」
+     * 「ActionBaseを継承したEmployeeActionのindex()メソッドの中から呼び出される。」
      */
     public List<EmployeeView> getPerPage(int page) {
         List<Employee> employees = em.createNamedQuery(JpaConst.Q_EMP_GET_ALL, Employee.class)
