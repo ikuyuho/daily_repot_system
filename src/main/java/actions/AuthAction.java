@@ -13,7 +13,6 @@ import services.EmployeeService;
 
 /**
  * 認証に関する処理を行うActionクラス
- *
  */
 public class AuthAction extends ActionBase {
 
