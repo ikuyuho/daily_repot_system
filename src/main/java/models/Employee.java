@@ -21,25 +21,28 @@ import lombok.Setter;
  * 従業員データのDTOモデル
  *
  */
-@Table(name = JpaConst.TABLE_EMP)
+
+//ENTITY_EMP = "employee"
+
+@Table(name = JpaConst.TABLE_EMP) //"employee"
 @NamedQueries({
     @NamedQuery(
 //            全ての従業員情報を取得
-            name = JpaConst.Q_EMP_GET_ALL,
-            query = JpaConst.Q_EMP_GET_ALL_DEF),
+            name = JpaConst.Q_EMP_GET_ALL,  //"employee.getAll"
+            query = JpaConst.Q_EMP_GET_ALL_DEF),  //"SELECT e FROM Employee AS e ORDER BY e.id DESC
     @NamedQuery(
 //            従業員情報の全件数を取得
-            name = JpaConst.Q_EMP_COUNT,
+            name = JpaConst.Q_EMP_COUNT,  //"employee.count"
             query = JpaConst.Q_EMP_COUNT_DEF),
     @NamedQuery(
 //            指定された社員番号が既にデータベースに存在しているか調べる
-
-            name = JpaConst.Q_EMP_COUNT_REGISTERED_BY_CODE,
-            query = JpaConst.Q_EMP_COUNT_REGISTERED_BY_CODE_DEF),
+            name = JpaConst.Q_EMP_COUNT_REGISTERED_BY_CODE, // "employee.countRegisteredByCode"
+            query = JpaConst.Q_EMP_COUNT_REGISTERED_BY_CODE_DEF), // "SELECT COUNT(e) FROM Employee AS e WHERE e.code = :" + JPQL_PARM_CODE;;
     @NamedQuery(
 //            従業員がログインするときに社員番号とパスワードが正しいかチェックするためのモノ
-            name = JpaConst.Q_EMP_GET_BY_CODE_AND_PASS,
-            query = JpaConst.Q_EMP_GET_BY_CODE_AND_PASS_DEF)
+            name = JpaConst.Q_EMP_GET_BY_CODE_AND_PASS,  //  "employee.getByCodeAndPass"
+            query = JpaConst.Q_EMP_GET_BY_CODE_AND_PASS_DEF) //    Q_EMP_GET_BY_CODE_AND_PASS_DEF = "SELECT e FROM Employee AS e WHERE e.deleteFlag = 0 AND e.code = :" + JPQL_PARM_CODE + " AND e.password = :" + JPQL_PARM_PASSWORD;
+
 })
 
 @Getter //全てのクラスフィールドについてgetterを自動生成する(Lombok)
@@ -63,7 +66,7 @@ public class Employee {
     @Column(name = JpaConst.EMP_COL_CODE, nullable = false, unique = true)
 //    ↑のunique=trueは一意制約といい、既に存在している社員番号は登録できない旨をデータベースに指定するための設定
     private String code;
-        
+
     /**
      * 氏名
      */

@@ -3,6 +3,7 @@
 	<persistence-unit name="daily_report_system" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<class>models.Employee</class>
+		<class>models.Report</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/daily_report_system?useSSL=false&amp;allowPublicKeyRetrieval=true"/>
